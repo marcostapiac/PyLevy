@@ -31,19 +31,20 @@ endp = (endp - np.mean(endp))/np.std(endp)
 rvs = normDist.rvs(size=endp.shape[0])
 
 pgf = True
-titleqq = "Q-Q Plot for Residual Normal Gamma Process with $\mu, \mu_{W}, \sigma_{W}, \\nu, \gamma, c =" + str(mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(nu) + " ,"+ str(round(gamma,3)) + " ," + str(truncation)+"$"
+titleqq = "Q-Q Plot for Residual NG Process with $\mu, \mu_{W}, \sigma_{W}, \\nu, \gamma =" + str(mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(nu) + " ,"+ str(round(gamma,3)) +"$"
 qqplot(rvs, endp, xlabel="True Normal RVs", ylabel="Residual Normal Gamma RVs", plottitle=titleqq, log=False, isPGF=pgf)
 if pgf:
-    plt.savefig("NormalGammaCLTQQ.pgf", bbox_inches = "tight")
+    plt.savefig("NormalGammaCLTQQ.png", bbox_inches = "tight")
 else:
     plt.show()
+plt.close()
 
 hist_axis = np.linspace(normDist.ppf(0.00001), normDist.ppf(0.99999), endp.shape[0])
 pdf =normDist.pdf(hist_axis)
 
-titlehist = "Histogram for Residual Normal Gamma Process with $\mu, \mu_{W}, \sigma_{W}, \\nu, \gamma, c =" + str(mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(nu) + " ,"+ str(round(gamma,3)) + " ," + str(truncation)+"$"
+titlehist = "Histogram for Residual NG Process with $\mu, \mu_{W}, \sigma_{W}, \\nu, \gamma =" + str(mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(nu) + " ,"+ str(round(gamma,3)) +"$"
 histogramplot(endp, pdf, hist_axis, xlabel="X", ylabel="PDF", plottitle=titlehist, isPGF=pgf)
 if pgf:
-    plt.savefig("NormalGammaCLTHist.pgf", bbox_inches = "tight")
+    plt.savefig("NormalGammaCLTHist.png", bbox_inches = "tight")
 else:
     plt.show()

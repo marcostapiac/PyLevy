@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import kstest
 from PyLevy.utils.plotting_functions import qqplot
 from PyLevy.processes import base_processes
 from tqdm import tqdm
@@ -9,7 +8,6 @@ delta = 1.3
 gamma = np.sqrt(2.)
 lambd = .2
 nSamples = 10000
-
 
 endp = []
 gig = base_processes.GIGProcess(delta=delta, gamma=gamma, lambd=lambd)
@@ -22,10 +20,11 @@ for i in tqdm(range(nSamples)):
     endpoint = np.sum(gig_sample[1])
     endp.append(endpoint)
 
-pgf = True
-title = "Q-Q plot for GIG Process with $\delta, \gamma, \lambda = " + str(delta) + " ," + str(round(gamma, 3)) + " ," + str(lambd) + "$"
+pgf = False
+title = "Q-Q plot for GIG Process with $\delta, \gamma, \lambda = " + str(delta) + " ," + str(
+    round(gamma, 3)) + " ," + str(lambd) + "$"
 qqplot(samps, endp, xlabel="True RVs", ylabel="GIG Random Variables at $t = T_{horizon}$", log=True, plottitle=title, isPGF=pgf)
 if pgf:
-    plt.savefig("GIGSimulationQQPlot.pgf", bbox_inches = "tight")
+    plt.savefig("GIGSimulationQQPlot.png", bbox_inches="tight")
 else:
     plt.show()

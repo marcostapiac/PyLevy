@@ -66,9 +66,9 @@ def qqplot(x, y, xlabel="", ylabel="", plottitle="", quantiles=None, interpolati
     """
     plt.style.use('ggplot')
     if isPGF:
-        matplotlib.use("pgf")
+        #matplotlib.use("pgf")
         matplotlib.rcParams.update({
-            "pgf.texsystem": "pdflatex",
+            #"pgf.texsystem": "pdflatex",
             'font.family': 'serif',
             'text.usetex': True,
             'pgf.rcfonts': False,
@@ -127,9 +127,9 @@ def histogramplot(rvs, pdf_vals, axis, num_bins = 100, xlabel="", ylabel="", plo
     """ Function to compare generated process with density at t = T_{horizon} """
     plt.style.use('ggplot')
     if isPGF:
-        matplotlib.use("pgf")
+        #matplotlib.use("pgf")
         matplotlib.rcParams.update({
-            "pgf.texsystem": "pdflatex",
+            #"pgf.texsystem": "pdflatex",
             'font.family': 'serif',
             'text.usetex': True,
             'pgf.rcfonts': False,

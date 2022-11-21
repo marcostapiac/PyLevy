@@ -19,10 +19,10 @@ for _ in range(nPaths):
     paths.append(gpintegral)
 
 
-pgf =True
+pgf = True
 plot_path(time_ax, paths, title="10 Gamma Paths with $\gamma, \\nu = " + str(round(gamma, 3)) + " ," + str(nu) + "$")
 if pgf:
-    plt.savefig("GammaPathSimulation.pgf", bbox_inches = "tight")
+    plt.savefig("GammaPathSimulation.png", bbox_inches = "tight")
 else:
     plt.show()
 

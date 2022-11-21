@@ -32,19 +32,19 @@ endp = (endp - np.mean(endp))/np.std(endp)
 rvs = normDist.rvs(size=endp.shape[0])
 
 pgf = True
-titleqq = "Q-Q Plot for Residual Normal Tempered Stable Process with $\mu, \mu_{W}, \sigma_{W}, \kappa, \gamma, \delta, c =" + str(mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(kappa) + " ,"+ str(round(gamma,3)) + " ,"+ str(round(delta,3)) + " ,"+str(truncation) + "$"
+titleqq = "Q-Q Plot for Residual NTS Process with $\mu, \mu_{W}, \sigma_{W}, \kappa, \gamma, \delta=" + str(mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(kappa) + " ,"+ str(round(gamma,3)) + " ,"+ str(round(delta,3)) + "$"
 qqplot(rvs, endp, xlabel="True Normal RVs", ylabel="Residual Normal Tempered Stable RVs", plottitle=titleqq, log=False, isPGF=pgf)
 if pgf:
-    plt.savefig("NormalTSCLTQQ.pgf", bbox_inches = "tight")
+    plt.savefig("NormalTSCLTQQ.png", bbox_inches = "tight")
 else:
     plt.show()
-
+plt.close()
 hist_axis = np.linspace(normDist.ppf(0.00001), normDist.ppf(0.99999), endp.shape[0])
 pdf =normDist.pdf(hist_axis)
 
-titlehist = "Histogram for Residual Normal Tempered Stable Process with $\mu, \mu_{W}, \sigma_{W}, \kappa, \gamma, \delta, c =" + str(mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(kappa) + " ,"+ str(round(gamma,3)) + " ,"+ str(round(delta,3)) + " ,"+str(truncation) + "$"
+titlehist = "Histogram for Residual NTS Process with $\mu, \mu_{W}, \sigma_{W}, \kappa, \gamma, \delta =" + str(mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(kappa) + " ,"+ str(round(gamma,3)) + " ,"+ str(round(delta,3)) + "$"
 histogramplot(endp, pdf, hist_axis, num_bins = 200, xlabel="X", ylabel="PDF", plottitle=titlehist, isPGF=pgf)
 if pgf:
-    plt.savefig("NormalTSCLTHist.pgf", bbox_inches = "tight")
+    plt.savefig("NormalTSCLTHist.png", bbox_inches = "tight")
 else:
     plt.show()

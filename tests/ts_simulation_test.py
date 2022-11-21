@@ -24,7 +24,7 @@ for _ in range(nPaths):
 pgf =True
 plot_path(time_ax, paths, title="10 Tempered Stable Paths with $\kappa, \gamma, \delta = " + str(kappa)+" ,"+ str(round(gamma, 3)) + " ," + str(delta) + "$")
 if pgf:
-    plt.savefig("TSPathSimulation.pgf", bbox_inches = "tight")
+    plt.savefig("TSPathSimulation.png", bbox_inches = "tight")
 else:
     plt.show()
 

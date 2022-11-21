@@ -22,6 +22,6 @@ plot_path(time_ax, paths,
           title="10 GIG Paths with $\delta, \gamma, \lambda = " + str(delta) + " ," + str(round(gamma, 3)) + " ," + str(
               lambd) + "$")
 if pgf:
-    plt.savefig("GIGPathSimulation.pgf", bbox_inches="tight")
+    plt.savefig("GIGPathSimulation.png", bbox_inches="tight")
 else:
     plt.show()

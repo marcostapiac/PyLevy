@@ -30,6 +30,6 @@ pgf =True
 title = "Q-Q plot for TS Process with $\kappa, \gamma, \delta = " + str(kappa)+" ,"+ str(round(gamma, 3)) + " ," + str(delta) + "$"
 qqplot(samps, endp, xlabel="True RVs", ylabel="TS Random Variables at $t = T_{horizon}$", plottitle=title, isPGF=pgf)
 if pgf:
-    plt.savefig("TSSimulationQQPlot.pgf", bbox_inches = "tight")
+    plt.savefig("TSSimulationQQPlot.png", bbox_inches = "tight")
 else:
     plt.show()

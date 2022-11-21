@@ -25,8 +25,8 @@ for i in tqdm(range(nSamples)):
 pdf = gammaDist.pdf(x=np.linspace(min(endp), max(endp), len(endp)), a=nu, loc=0., scale=1/beta)
 
 pgf =True
-histogramplot(endp, pdf, xlabel="X", ylabel="PDF", plottitle="Histogram for Gamma Process", isPGF=pgf)
+histogramplot(rvs=endp, pdf_vals=pdf, axis=np.linspace(min(endp), max(endp), len(endp)), xlabel="X", ylabel="PDF", plottitle="Histogram for Gamma Process with $\gamma, \\nu = " + str(round(gamma, 3)) + " ," + str(nu) + "$", isPGF=pgf)
 if pgf:
-    plt.savefig("GammaPathHistogram.pgf", bbox_inches = "tight")
+    plt.savefig("GammaPathHistogram.png", bbox_inches = "tight")
 else:
     plt.show()
