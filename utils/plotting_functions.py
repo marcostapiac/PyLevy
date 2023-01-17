@@ -4,29 +4,25 @@ import matplotlib.pyplot as plt
 import numbers
 
 
-def plot_path(time_ax, paths, title="Sample Paths", isPGF=False, fig=None, ax=None):
+def plot_path(time_ax, paths, title="Sample Paths", xlabel="Time", ylabel="Position", isLatex=True, fig=None, ax=None):
     plt.style.use('ggplot')
-    if isPGF:
-        matplotlib.use("pgf")
+    if isLatex:
         matplotlib.rcParams.update({
-            "pgf.texsystem": "pdflatex",
             'font.family': 'serif',
             'text.usetex': True,
             'pgf.rcfonts': False,
         })
-    else:
-        plt.style.use('ggplot')
     if (fig and ax) is None:
         fig, ax = plt.subplots()
     for path in paths:
         ax.step(time_ax, path, lw=1.2)
 
-    ax.set_xlabel("Time")
-    ax.set_ylabel("Position")
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
     ax.set_title(title)
 
 def qqplot(x, y, xlabel="", ylabel="", plottitle="", quantiles=None, interpolation='nearest', ax=None, rug=False,
-           rug_length=0.05, rug_kwargs=None, font_size=14, title_size=14, log=True, isPGF=False, **kwargs):
+           rug_length=0.05, rug_kwargs=None, font_size=14, title_size=14, log=True, **kwargs):
     """Draw a quantile-quantile plot for `x` versus `y`.
 
     Parameters
@@ -65,14 +61,11 @@ def qqplot(x, y, xlabel="", ylabel="", plottitle="", quantiles=None, interpolati
         the q-q plot.
     """
     plt.style.use('ggplot')
-    if isPGF:
-        #matplotlib.use("pgf")
-        matplotlib.rcParams.update({
-            #"pgf.texsystem": "pdflatex",
-            'font.family': 'serif',
-            'text.usetex': True,
-            'pgf.rcfonts': False,
-        })
+    matplotlib.rcParams.update({
+        'font.family': 'serif',
+        'text.usetex': True,
+        'pgf.rcfonts': False,
+    })
     plt.rc('font', size=font_size)
     plt.rc('axes', titlesize=title_size)
     x1 = x
@@ -123,17 +116,14 @@ def qqplot(x, y, xlabel="", ylabel="", plottitle="", quantiles=None, interpolati
     ax.legend()
 
 
-def histogramplot(rvs, pdf_vals, axis, num_bins = 100, xlabel="", ylabel="", plottitle="", plottlabel="", ax=None, isPGF=False):
+def histogramplot(rvs, pdf_vals, axis, num_bins = 100, xlabel="", ylabel="", plottitle="", plottlabel="", ax=None):
     """ Function to compare generated process with density at t = T_{horizon} """
     plt.style.use('ggplot')
-    if isPGF:
-        #matplotlib.use("pgf")
-        matplotlib.rcParams.update({
-            #"pgf.texsystem": "pdflatex",
-            'font.family': 'serif',
-            'text.usetex': True,
-            'pgf.rcfonts': False,
-        })
+    matplotlib.rcParams.update({
+        'font.family': 'serif',
+        'text.usetex': True,
+        'pgf.rcfonts': False,
+    })
     if ax is None:
         ax = plt.gca()
     ax.set_xlabel(xlabel)
@@ -143,16 +133,13 @@ def histogramplot(rvs, pdf_vals, axis, num_bins = 100, xlabel="", ylabel="", plo
     ax.plot(axis, pdf_vals, label=plottlabel)
 
 
-def plot_filtering_results(times, observations, x, x_dot, estimated_signal, estimated_stds, std_width = 2.58, isPGF=False):
+def plot_filtering_results(times, observations, x, x_dot, estimated_signal, estimated_stds, std_width = 2.58):
     plt.style.use('ggplot')
-    if isPGF:
-        matplotlib.use("pgf")
-        matplotlib.rcParams.update({
-            "pgf.texsystem": "pdflatex",
-            'font.family': 'serif',
-            'text.usetex': True,
-            'pgf.rcfonts': False,
-        })
+    matplotlib.rcParams.update({
+        'font.family': 'serif',
+        'text.usetex': True,
+        'pgf.rcfonts': False,
+    })
     fig, [ax1, ax2] = plt.subplots(nrows=2, ncols=1)
     fig.set_size_inches(14, 8)
     fig.tight_layout()

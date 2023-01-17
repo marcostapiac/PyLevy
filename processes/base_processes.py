@@ -1,6 +1,6 @@
 import numpy as np
-from PyLevy.utils.maths_functions import hankel_squared, gammafnc, incgammau, incgammal, get_z0_H0, gammainc, gammaincc, \
-    gammaincinv, psi, dpsi, g, levy_stable, log10, floor
+from utils.maths_functions import hankel_squared, gammafnc, incgammal, get_z0_H0, gammainc, gammaincc, \
+    gammaincinv, psi, dpsi, g, levy_stable
 
 
 class LevyProcess:

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from PyLevy.utils.plotting_functions import plot_path
-from PyLevy.processes import base_processes
+from utils.plotting_functions import plot_path
+from processes import base_processes
 
 delta = 1.3
 gamma = np.sqrt(2.)
@@ -17,11 +17,8 @@ for _ in range(nPaths):
     gigpintegral = gigp.integrate(time_ax, gigp_sample[0], gigp_sample[1])
     paths.append(gigpintegral)
 
-pgf = True
 plot_path(time_ax, paths,
           title="10 GIG Paths with $\delta, \gamma, \lambda = " + str(delta) + " ," + str(round(gamma, 3)) + " ," + str(
               lambd) + "$")
-if pgf:
-    plt.savefig("GIGPathSimulation.png", bbox_inches="tight")
-else:
-    plt.show()
+plt.savefig("GIGPathSimulation.png", bbox_inches="tight")
+plt.show()

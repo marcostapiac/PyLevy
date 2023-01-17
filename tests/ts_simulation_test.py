@@ -21,10 +21,7 @@ for _ in range(nPaths):
     tspintegral = tsp.integrate(time_ax, tsp_sample[0], tsp_sample[1])
     paths.append(tspintegral)
 
-pgf =True
 plot_path(time_ax, paths, title="10 Tempered Stable Paths with $\kappa, \gamma, \delta = " + str(kappa)+" ,"+ str(round(gamma, 3)) + " ," + str(delta) + "$")
-if pgf:
-    plt.savefig("TSPathSimulation.png", bbox_inches = "tight")
-else:
-    plt.show()
+plt.savefig("TSPathSimulation.png", bbox_inches = "tight")
+plt.show()
 

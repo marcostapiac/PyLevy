@@ -18,11 +18,7 @@ for _ in range(nPaths):
     gpintegral = gp.integrate(time_ax, gammap_sample[0], gammap_sample[1])
     paths.append(gpintegral)
 
-
-pgf = True
 plot_path(time_ax, paths, title="10 Gamma Paths with $\gamma, \\nu = " + str(round(gamma, 3)) + " ," + str(nu) + "$")
-if pgf:
-    plt.savefig("GammaPathSimulation.png", bbox_inches = "tight")
-else:
-    plt.show()
+plt.savefig("GammaPathSimulation.png", bbox_inches = "tight")
+plt.show()
 
