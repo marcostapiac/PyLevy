@@ -1,11 +1,10 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from PyLevy.utils.plotting_functions import plot_path
+import numpy as np
 from PyLevy.processes import base_processes
-
+from PyLevy.utils.plotting_functions import plot_path
 
 gamma = np.sqrt(2.)
-beta = gamma**2/2.
+beta = gamma ** 2 / 2.
 nu = 2.
 nPaths = 10
 
@@ -18,7 +17,6 @@ for _ in range(nPaths):
     gpintegral = gp.integrate(time_ax, gammap_sample[0], gammap_sample[1])
     paths.append(gpintegral)
 
-plot_path(time_ax, paths, title="10 Gamma Paths with $\gamma, \\nu = " + str(round(gamma, 3)) + " ," + str(nu) + "$")
-plt.savefig("GammaPathSimulation.png", bbox_inches = "tight")
+plot_path(time_ax, paths, title="Truncated Gamma Sample Paths")
+plt.savefig("../pngs/GammaPathSimulation.png", bbox_inches="tight")
 plt.show()
-

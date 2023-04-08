@@ -1,6 +1,6 @@
-from PyLevy.filtering.filters import KalmanFilterMarcos
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+from PyLevy.filtering.filters import KalmanFilterMarcos
 
 
 # https://machinelearningspace.com/object-tracking-python/
@@ -17,10 +17,10 @@ def test_LGSSM_KF():
     time_ax = np.arange(0, 100, 1)
     """ Initialise filter """
     L = np.linalg.cholesky(Q)
-    x = L@np.random.randn(Q.shape[0], 1)
+    x = L @ np.random.randn(Q.shape[0], 1)
     mean_update = np.zeros(shape=(1, 2))
     cov_update = np.eye(2)
-    position_preds = [mean_update[0,0]]
+    position_preds = [mean_update[0, 0]]
     observations = [0]
     states = [x]
     true_position = [x[0]]
@@ -28,7 +28,7 @@ def test_LGSSM_KF():
 
     """ Run Kalman Filter"""
     for i in range(1, len(time_ax)):
-        x = A @ states[i - 1] + L@np.random.randn(Q.shape[0], 1)
+        x = A @ states[i - 1] + L @ np.random.randn(Q.shape[0], 1)
         y = H @ x + np.random.normal(loc=0., scale=R)
         states.append(x)
         observations.append(y)
@@ -47,5 +47,6 @@ def test_LGSSM_KF():
     plt.xlabel("Time /s")
     plt.ylabel("Position /m")
     plt.show()
+
 
 test_LGSSM_KF()

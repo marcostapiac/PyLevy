@@ -15,11 +15,11 @@ endp_gamma = []
 endp_ts = []
 
 for _ in range(sims):
-	_, jumps_gamma = gp.simulate_jumps()
-	endp_gamma.append(jumps_gamma.sum())
+    _, jumps_gamma = gp.simulate_jumps()
+    endp_gamma.append(jumps_gamma.sum())
 
-	_, jumps_ts = tsp.simulate_jumps()
-	endp_ts.append(jumps_ts.sum())
+    _, jumps_ts = tsp.simulate_jumps()
+    endp_ts.append(jumps_ts.sum())
 
 fig, [ax1, ax2] = plt.subplots(nrows=1, ncols=2)
 

@@ -8,7 +8,7 @@ from scipy.special import gammaincinv
 from scipy.stats import kstest
 from scipy.stats import gamma as gammaDist
 from scipy.stats import norm as normDist
-
+from scipy.special import hyp1f1
 
 def incgammau(s, x):
     return gammaincc(s, x) * gammafnc(s)

@@ -1,9 +1,9 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from PyLevy.utils.plotting_functions import qqplot, histogramplot
+import numpy as np
 from PyLevy.processes import mean_mixture_processes
-from PyLevy.utils.maths_functions import kstest, normDist
-from tqdm import tqdm
+from PyLevy.tqdm import tqdm
+from PyLevy.utils.maths_functions import normDist
+from PyLevy.utils.plotting_functions import qqplot, histogramplot
 
 t1 = 0.0
 t2 = 1.0
@@ -18,7 +18,8 @@ truncation = 1e-6
 nSamples = 50000
 
 endp = []
-gh = mean_mixture_processes.GeneralHyperbolicProcess(delta=delta, gamma=gamma, lambd=lambd, mu=mu, mu_W=mu_W, var_W=var_W)
+gh = mean_mixture_processes.GeneralHyperbolicProcess(delta=delta, gamma=gamma, lambd=lambd, mu=mu, mu_W=mu_W,
+                                                     var_W=var_W)
 
 for i in tqdm(range(nSamples)):
     gh_sample = gh.simulate_small_jumps(M=6000, rate=1. / (t2 - t1), truncation=truncation)
@@ -29,18 +30,15 @@ endp = (endp - np.mean(endp)) / np.std(endp)
 
 rvs = normDist.rvs(size=endp.shape[0])
 
-titleqq = "Q-Q Plot for Residual GH Process with $\mu, \mu_{W}, \sigma_{W}, \delta, \gamma, \lambda =" + str(
-    mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(delta) + " ," + str(round(gamma, 3)) + " ," + str(round(lambd, 3)) + "$"
-qqplot(rvs, endp, xlabel="True Normal RVs", ylabel="Residual GH RVs", plottitle=titleqq, log=False)
-plt.savefig("GHCLTQQ.png", bbox_inches="tight")
+titleqq = "GH Residual vs Gaussian Distribution"
+qqplot(rvs, endp, xlabel="Gaussian Variates", ylabel="Residual GH Variates", plottitle=titleqq, log=False)
+plt.savefig("../pngs/GHCLTQQ.png", bbox_inches="tight")
 plt.show()
 plt.close()
 hist_axis = np.linspace(normDist.ppf(0.00001), normDist.ppf(0.99999), endp.shape[0])
 pdf = normDist.pdf(hist_axis)
 
-titlehist = "Histogram for Residual GH Process with $\mu, \mu_{W}, \sigma_{W}, \delta, \gamma, \lambda =" + str(
-    mu) + " ," + str(mu_W) + " ," + str(var_W) + " ," + str(delta) + " ," + str(round(gamma, 3)) + " ," + str(round(lambd, 3)) + "$"
-
-histogramplot(endp, pdf, hist_axis, num_bins=200, xlabel="X", ylabel="PDF", plottitle=titlehist)
-plt.savefig("GHCLTHist.png", bbox_inches="tight")
+titlehist = "Residual GH Density at $t=1$"
+histogramplot(endp, pdf, hist_axis, num_bins=200, xlabel="x", ylabel="Density at $t=1$", plottitle=titlehist)
+plt.savefig("../pngs/GHCLTHist.png", bbox_inches="tight")
 plt.show()

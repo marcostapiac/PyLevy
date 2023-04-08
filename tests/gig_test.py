@@ -1,8 +1,9 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from utils.plotting_functions import qqplot
-from processes import base_processes
+import numpy as np
+from PyLevy.utils.plotting_functions import qqplot
 from tqdm import tqdm
+
+from processes import base_processes
 
 delta = 1.3
 gamma = np.sqrt(2.)
@@ -19,8 +20,7 @@ for i in tqdm(range(nSamples)):
     endpoint = np.sum(gig_sample[1])
     endp.append(endpoint)
 
-title = "Q-Q plot for GIG Process with $\delta, \gamma, \lambda = " + str(delta) + " ," + str(
-    round(gamma, 3)) + " ," + str(lambd) + "$"
-qqplot(samps, endp, xlabel="True RVs", ylabel="GIG Random Variables at $t = T_{horizon}$", log=True, plottitle=title)
-plt.savefig("GIGSimulationQQPlot.png", bbox_inches="tight")
+title = "Truncated vs true GIG density at $t=1$"
+qqplot(samps, endp, xlabel="True GIG Variates", ylabel="Truncated GIG Variates", log=True, plottitle=title)
+plt.savefig("../pngs/GIGSimulationQQPlot.png", bbox_inches="tight")
 plt.show()

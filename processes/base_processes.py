@@ -296,14 +296,14 @@ class GIGProcess(JumpLevyProcess):
         lambd = self.lambd
         delta = self.delta
         if np.abs(lambd) < 0.5:
-            return delta * truncation * np.sqrt((2. * truncation) /np.pi)/3.
+            return delta * truncation * np.sqrt((2. * truncation) / np.pi) / 3.
         else:
             a = np.pi * np.power(2.0, (1.0 - 2.0 * np.abs(lambd)))
             b = gammafnc(np.abs(lambd)) ** 2
             c = 1 / (1 - 2 * np.abs(lambd))
             z1 = (a / b) ** c
             H0 = z1 * hankel_squared(np.abs(lambd), z1)
-            return 2 * delta * truncation * np.sqrt((2. * truncation) / np.pi) / (3.*np.pi * H0)
+            return 2 * delta * truncation * np.sqrt((2. * truncation) / np.pi) / (3. * np.pi * H0)
 
     class SimpleSimulator(JumpLevyProcess):
         def __init__(self, outer, rng=np.random.default_rng()):
@@ -358,7 +358,8 @@ class GIGProcess(JumpLevyProcess):
 
         def simulate_internal_jumps(self, rate, M, gamma_0, truncation):
             _, x = self.q1.simulate_jumps(rate, M, gamma_0, truncation)
-            _, x = self.accept_reject_simulation(x, x, thinning_func=lambda xs: (np.abs(self.outer.lambd) * incgammal(np.abs(self.outer.lambd), (self.z0 ** 2) * xs / (
+            _, x = self.accept_reject_simulation(x, x, thinning_func=lambda xs: (
+                        np.abs(self.outer.lambd) * incgammal(np.abs(self.outer.lambd), (self.z0 ** 2) * xs / (
                         2. * (self.outer.delta ** 2))) / np.power(
                     (self.z0 ** 2) * xs / (2. * self.outer.delta ** 2), np.abs(self.outer.lambd))), rate=rate)
             z = self.__generate_z(x)
@@ -395,7 +396,7 @@ class GIGProcess(JumpLevyProcess):
         def simulate_internal_jumps(self, rate, M, gamma_0, truncation):
             _, x = self.q2.simulate_jumps(rate, M, gamma_0, truncation)
             _, x = self.accept_reject_simulation(x, x, thinning_func=lambda xs: gammaincc(0.5, (self.z0 ** 2) * xs / (
-                        2 * self.outer.delta ** 2)), rate=rate)
+                    2 * self.outer.delta ** 2)), rate=rate)
             z = self.__generate_z(x)
             jtimes, jsizes = self.accept_reject_simulation(x, z, thinning_func=self.thinning_func, rate=rate)
             return jtimes, jsizes

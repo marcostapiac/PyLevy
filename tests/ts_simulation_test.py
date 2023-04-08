@@ -1,9 +1,8 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from PyLevy.utils.plotting_functions import plot_path
+import numpy as np
 from PyLevy.processes import base_processes
 from PyLevy.utils.maths_functions import gammafnc
-
+from PyLevy.utils.plotting_functions import plot_path
 
 kappa = 0.5
 gamma = 1.35
@@ -21,7 +20,6 @@ for _ in range(nPaths):
     tspintegral = tsp.integrate(time_ax, tsp_sample[0], tsp_sample[1])
     paths.append(tspintegral)
 
-plot_path(time_ax, paths, title="10 Tempered Stable Paths with $\kappa, \gamma, \delta = " + str(kappa)+" ,"+ str(round(gamma, 3)) + " ," + str(delta) + "$")
-plt.savefig("TSPathSimulation.png", bbox_inches = "tight")
+plot_path(time_ax, paths, title="Truncated Tempered Stable Sample Paths")
+plt.savefig("../pngs/TSPathSimulation.png", bbox_inches="tight")
 plt.show()
-

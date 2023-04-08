@@ -1,7 +1,7 @@
-from sys import argv
 import numpy as np
 import matplotlib.pyplot as plt
-from PyLevy.processes import base_processes, mean_mixture_processes
+import numpy as np
+from PyLevy.processes import mean_mixture_processes
 
 plt.style.use('ggplot')
 

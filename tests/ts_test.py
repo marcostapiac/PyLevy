@@ -1,10 +1,9 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from tqdm import tqdm
+import numpy as np
+from PyLevy.processes import base_processes
 from PyLevy.utils.maths_functions import gammafnc
 from PyLevy.utils.plotting_functions import qqplot
-from PyLevy.processes import base_processes
-
+from tqdm import tqdm
 
 t1 = 0.0
 t2 = 1.0
@@ -19,11 +18,12 @@ nSamples = 100000
 endp = []
 
 for i in tqdm(range(nSamples)):
-    _, ts_sample = ts.simulate_jumps(M=2000,  truncation=1e-10)
+    _, ts_sample = ts.simulate_jumps(M=2000, truncation=1e-10)
     endp.append(np.sum(ts_sample))
-samps = ts.generate_marginal_samples(numSamples=nSamples, tHorizon=t2-t1)
+samps = ts.generate_marginal_samples(numSamples=nSamples, tHorizon=t2 - t1)
 
-title = "Q-Q plot for TS Process with $\kappa, \gamma, \delta = " + str(kappa)+" ,"+ str(round(gamma, 3)) + " ," + str(delta) + "$"
-qqplot(samps, endp, xlabel="True RVs", ylabel="TS Random Variables at $t = T_{horizon}$", plottitle=title)
-plt.savefig("TSSimulationQQPlot.png", bbox_inches = "tight")
+title = "Truncated vs true Tempered Stable density at $t=1$"
+qqplot(samps, endp, xlabel="True Tempered Stable Variates", ylabel="Truncated Tempered Stable Variates",
+       plottitle=title)
+plt.savefig("../pngs/TSSimulationQQPlot.png", bbox_inches="tight")
 plt.show()

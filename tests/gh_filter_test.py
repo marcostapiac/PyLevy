@@ -1,9 +1,9 @@
-from PyLevy.statespace.statespace import LinearSDEStateSpace, LangevinStateSpace
-from PyLevy.processes.mean_mixture_processes import GeneralHyperbolicProcess
-from PyLevy.filtering.filters import MarginalParticleFilter
-from PyLevy.utils.plotting_functions import plot_filtering_results
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+from PyLevy.filtering.filters import MarginalParticleFilter
+from PyLevy.processes.mean_mixture_processes import GeneralHyperbolicProcess
+from PyLevy.statespace.statespace import LangevinStateSpace
+from PyLevy.utils.plotting_functions import plot_filtering_results
 
 plt.style.use('ggplot')
 
@@ -31,7 +31,6 @@ langevin = LangevinStateSpace(initial_state, theta, ghp, observation_matrix, tru
 times = rngt.exponential(size=100).cumsum()
 x, ms, Ss = langevin.generate_observations(times, kv=1e-1)
 
-
 observations = x[0]
 xs = x[1]
 xds = x[2]
@@ -45,6 +44,6 @@ kv = 1e-1
 mpf = MarginalParticleFilter(np.zeros(2), np.eye(2), transition_model=langevin2, rng=rng2, N=500)
 means, covs = mpf.run_filter(times, observations, kv, ms=ms, Ss=Ss, progbar=True)
 
-stds = [covs[0,0], covs[1,1]]
+stds = [covs[0, 0], covs[1, 1]]
 
 plot_filtering_results(times, observations, xs, xds, means, stds)

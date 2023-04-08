@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numbers
 
 
-def plot_path(time_ax, paths, title="Sample Paths", xlabel="Time", ylabel="Position", isLatex=True, fig=None, ax=None):
+def plot_path(time_ax, paths, title="Sample Paths", xlabel="$t$", ylabel="$\hat{X_{\epsilon}}(t)$", isLatex=True, fig=None, ax=None):
     plt.style.use('ggplot')
     if isLatex:
         matplotlib.rcParams.update({

@@ -1,6 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from utils.plotting_functions import plot_path
+import numpy as np
+from PyLevy.utils.plotting_functions import plot_path
+
 from processes import base_processes
 
 delta = 1.3
@@ -18,7 +19,6 @@ for _ in range(nPaths):
     paths.append(gigpintegral)
 
 plot_path(time_ax, paths,
-          title="10 GIG Paths with $\delta, \gamma, \lambda = " + str(delta) + " ," + str(round(gamma, 3)) + " ," + str(
-              lambd) + "$")
-plt.savefig("GIGPathSimulation.png", bbox_inches="tight")
+          title="Truncated GIG Sample Paths")
+plt.savefig("../pngs/GIGPathSimulation.png", bbox_inches="tight")
 plt.show()
