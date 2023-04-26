@@ -1,7 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-from PyLevy.utils.maths_functions import gammafnc, incgammal, erf, get_z0_H0, hyp1f1
+from utils.maths_functions import gammafnc, incgammal, erf, get_z0_H0, hyp1f1
 
 delta = 1.
 gamma = 0.5
@@ -9,7 +9,7 @@ lambd = -.2
 mu = 0.
 muW = 1.
 var_W = 2.
-truncations = np.logspace(-20, 0, num=10000)
+truncations = np.logspace(-20, 0, num=1000000)
 z0, H0 = get_z0_H0(lambd)
 
 tildePi = np.power(np.pi / 2., 0.5)
@@ -37,8 +37,8 @@ matplotlib.rcParams.update({
     'text.usetex': True,
     'pgf.rcfonts': False,
 })
-plt.plot(truncations, rate1 + rate2, label="Rate")
-plt.plot(truncations, asymptotic_rate, label="Asymptotic Rate")
+plt.plot(truncations, rate1 + rate2, label="Bound")
+plt.plot(truncations, asymptotic_rate, label="Asymptotic Bound")
 
 plt.title("Bounds on $E_{\epsilon}$ for the GH process")
 plt.xlabel("$\epsilon$")
