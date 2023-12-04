@@ -32,15 +32,15 @@ rvs = normDist.rvs(size=endp.shape[0])
 
 pgf = True
 titleqq = "NG Residual vs Gaussian Distribution"
-qqplot(rvs, endp, xlabel="Gaussian Variates", ylabel="NG Residual Variates", plottitle=titleqq, log=False)
-plt.savefig(project_config.ROOT_DIR + "/pngs/NormalGammaCLTQQ.eps",format="eps", bbox_inches="tight")
-plt.show()
-plt.close()
+#qqplot(rvs, endp, xlabel="Gaussian Variates", ylabel="NG Residual Variates", plottitle=titleqq, log=False)
+#plt.savefig(project_config.ROOT_DIR + "/pngs/NormalGammaCLTQQ.eps",format="eps", dpi=100, bbox_inches="tight")
+#plt.show()
+#plt.close()
 
 hist_axis = np.linspace(normDist.ppf(0.00001), normDist.ppf(0.99999), endp.shape[0])
 pdf = normDist.pdf(hist_axis)
 
 titlehist = "Residual NG Density at $t=1$"
 histogramplot(endp, pdf, hist_axis, xlabel="x", ylabel="Density at $t=1$", plottitle=titlehist)
-plt.savefig(project_config.ROOT_DIR + "/pngs/NormalGammaCLTHist.eps",format="eps", bbox_inches="tight")
+plt.savefig(project_config.ROOT_DIR + "/pngs/NormalGammaCLTHist.eps",format="eps", dpi=100, bbox_inches="tight")
 plt.show()

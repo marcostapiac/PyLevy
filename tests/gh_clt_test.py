@@ -17,7 +17,7 @@ mu_W = 1.
 var_W = 2.
 truncation = 1e-6
 
-nSamples = 50000
+nSamples = 10000
 
 endp = []
 gh = mean_mixture_processes.GeneralHyperbolicProcess(delta=delta, gamma=gamma, lambd=lambd, mu=mu, mu_W=mu_W,
@@ -41,6 +41,6 @@ plt.close()
 hist_axis = np.linspace(normDist.ppf(0.00001), normDist.ppf(0.99999), endp.shape[0])
 pdf = normDist.pdf(hist_axis)
 titlehist = "Residual GH Density at $t=1$"
-histogramplot(endp, pdf, hist_axis, num_bins=200, xlabel="x", ylabel="Density at $t=1$", plottitle=titlehist)
-plt.savefig(project_config.ROOT_DIR + "/pngs/GHCLTHist.eps",format="eps", bbox_inches="tight")
-plt.show()
+#histogramplot(endp, pdf, hist_axis, num_bins=200, xlabel="x", ylabel="Density at $t=1$", plottitle=titlehist)
+#plt.savefig(project_config.ROOT_DIR + "/pngs/GHCLTHist.eps",format="eps", bbox_inches="tight")
+#plt.show()

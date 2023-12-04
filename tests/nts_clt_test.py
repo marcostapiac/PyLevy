@@ -19,13 +19,13 @@ mu = 0.
 mu_W = 1.
 var_W = 2.
 
-nSamples = 100000
+nSamples = 10000
 
 endp = []
 nts = mean_mixture_processes.NormalTemperedStableProcess(alpha=kappa, beta=beta, C=C, mu=mu, mu_W=mu_W, var_W=var_W)
 
 for i in tqdm(range(nSamples)):
-    nts_sample = nts.simulate_small_jumps(M=2000, rate=1. / (t2 - t1), truncation=truncation)
+    nts_sample = nts.simulate_small_jumps(M=20000, rate=1. / (t2 - t1), truncation=truncation)
     endp.append(np.sum(nts_sample[1]))
 
 endp = np.array(endp)
@@ -38,9 +38,9 @@ qqplot(rvs, endp, xlabel="Gaussian Variates", ylabel="NTS Residual Variates", pl
 plt.savefig(project_config.ROOT_DIR + "/pngs/NormalTSCLTQQ.eps",format="eps",dpi=100, bbox_inches="tight")
 plt.show()
 plt.close()
+
 hist_axis = np.linspace(normDist.ppf(0.00001), normDist.ppf(0.99999), endp.shape[0])
 pdf = normDist.pdf(hist_axis)
-
 titlehist = "Residual NTS Density at $t=1$"
 histogramplot(endp, pdf, hist_axis, num_bins=200, xlabel="x", ylabel="Density at $t=1$", plottitle=titlehist)
 plt.savefig(project_config.ROOT_DIR + "/pngs/NormalTSCLTHist.eps",format="eps",dpi=100, bbox_inches="tight")
