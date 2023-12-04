@@ -3,6 +3,8 @@ import numpy as np
 from PyLevy.processes import base_processes
 from PyLevy.utils.plotting_functions import plot_path
 
+import project_config
+
 gamma = np.sqrt(2.)
 beta = gamma ** 2 / 2.
 nu = 2.
@@ -18,5 +20,5 @@ for _ in range(nPaths):
     paths.append(gpintegral)
 
 plot_path(time_ax, paths, title="Truncated Gamma Sample Paths")
-plt.savefig("../pngs/GammaPathSimulation.png", bbox_inches="tight")
+plt.savefig(project_config.ROOT_DIR + "/pngs/GammaPathSimulation.eps", format="eps", bbox_inches="tight")
 plt.show()

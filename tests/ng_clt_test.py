@@ -5,6 +5,8 @@ from PyLevy.utils.maths_functions import normDist
 from PyLevy.utils.plotting_functions import qqplot, histogramplot
 from tqdm import tqdm
 
+import project_config
+
 t1 = 0.0
 t2 = 1.0
 gamma = np.sqrt(2.)
@@ -31,7 +33,7 @@ rvs = normDist.rvs(size=endp.shape[0])
 pgf = True
 titleqq = "NG Residual vs Gaussian Distribution"
 qqplot(rvs, endp, xlabel="Gaussian Variates", ylabel="NG Residual Variates", plottitle=titleqq, log=False)
-plt.savefig("../pngs/NormalGammaCLTQQ.png", bbox_inches="tight")
+plt.savefig(project_config.ROOT_DIR + "/pngs/NormalGammaCLTQQ.eps",format="eps", bbox_inches="tight")
 plt.show()
 plt.close()
 
@@ -40,5 +42,5 @@ pdf = normDist.pdf(hist_axis)
 
 titlehist = "Residual NG Density at $t=1$"
 histogramplot(endp, pdf, hist_axis, xlabel="x", ylabel="Density at $t=1$", plottitle=titlehist)
-plt.savefig("../pngs/NormalGammaCLTHist.png", bbox_inches="tight")
+plt.savefig(project_config.ROOT_DIR + "/pngs/NormalGammaCLTHist.eps",format="eps", bbox_inches="tight")
 plt.show()

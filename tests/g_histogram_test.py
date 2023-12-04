@@ -5,6 +5,8 @@ from PyLevy.utils.maths_functions import gammaDist
 from PyLevy.utils.plotting_functions import histogramplot
 from tqdm import tqdm
 
+import project_config
+
 t1 = 0.0
 t2 = 1.0
 gamma = np.sqrt(2.)
@@ -25,5 +27,5 @@ histogramTitle = "Truncated vs true Gamma density at $t=1$"
 histogramplot(rvs=endp, pdf_vals=pdf, axis=np.linspace(min(endp), max(endp), len(endp)), xlabel="$x$",
               ylabel="Density at $t=1$", plottitle=histogramTitle)
 
-plt.savefig("../pngs/GammaPathHistogram.png", bbox_inches="tight")
+plt.savefig(project_config.ROOT_DIR + "/pngs/GammaPathHistogram.eps", format="eps",bbox_inches="tight")
 plt.show()

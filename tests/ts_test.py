@@ -5,6 +5,8 @@ from PyLevy.utils.maths_functions import gammafnc
 from PyLevy.utils.plotting_functions import qqplot
 from tqdm import tqdm
 
+import project_config
+
 t1 = 0.0
 t2 = 1.0
 kappa = 0.5
@@ -25,5 +27,5 @@ samps = ts.generate_marginal_samples(numSamples=nSamples, tHorizon=t2 - t1)
 title = "Truncated vs true Tempered Stable density at $t=1$"
 qqplot(samps, endp, xlabel="True Tempered Stable Variates", ylabel="Truncated Tempered Stable Variates",
        plottitle=title)
-plt.savefig("../pngs/TSSimulationQQPlot.png", bbox_inches="tight")
+plt.savefig(project_config.ROOT_DIR + "/pngs/TSSimulationQQPlot.eps",format="eps", bbox_inches="tight")
 plt.show()

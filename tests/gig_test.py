@@ -3,6 +3,7 @@ import numpy as np
 from PyLevy.utils.plotting_functions import qqplot
 from tqdm import tqdm
 
+import project_config
 from processes import base_processes
 
 delta = 1.3
@@ -22,5 +23,5 @@ for i in tqdm(range(nSamples)):
 
 title = "Truncated vs true GIG density at $t=1$"
 qqplot(samps, endp, xlabel="True GIG Variates", ylabel="Truncated GIG Variates", log=True, plottitle=title)
-plt.savefig("../pngs/GIGSimulationQQPlot.png", bbox_inches="tight")
+plt.savefig(project_config.ROOT_DIR + "/pngs/GIGSimulationQQPlot.eps",format="eps", bbox_inches="tight")
 plt.show()

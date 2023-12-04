@@ -1,6 +1,8 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+
+import project_config
 from utils.maths_functions import gammafnc, incgammal, hyp1f1
 
 muW = 1.
@@ -10,7 +12,7 @@ gamma = 1.35
 delta = 1.
 beta = (gamma ** (1 / kappa)) / 2.0
 C = delta * (2 ** kappa) * kappa * (1 / gammafnc(1. - kappa))
-truncations = np.linspace(1e-2, 1, num=1000000)
+truncations = np.linspace(1e-2, 1, num=100)
 
 
 A2 = 0.5 * np.power(gamma, 1. / kappa)
@@ -31,12 +33,10 @@ matplotlib.rcParams.update({
     'pgf.rcfonts': False,
 })
 plt.plot(truncations, rate, label="Bound")
-plt.plot(truncations, asymptotic_rate, label="Asymptotic Bound")
+plt.scatter(truncations, asymptotic_rate, marker="v", s=0.5, label="Asymptotic Bound")
 plt.title("Bounds on $E_{\epsilon}$ for the NTS process")
 plt.xlabel("$\epsilon$")
 plt.ylabel("Bound on $E_{\epsilon}$")
-#plt.yscale("log")
-#plt.xscale("log")
 plt.legend()
-plt.savefig("../pngs/ConvergenceRateNTS.png")
+plt.savefig(project_config.ROOT_DIR + "/pngs/ConvergenceRateNTS.eps",format="eps", dpi=100, bbox_inches="tight")
 plt.show()

@@ -4,6 +4,8 @@ from PyLevy.processes import base_processes
 from PyLevy.utils.maths_functions import gammafnc
 from PyLevy.utils.plotting_functions import plot_path
 
+import project_config
+
 kappa = 0.5
 gamma = 1.35
 delta = 1.
@@ -21,5 +23,5 @@ for _ in range(nPaths):
     paths.append(tspintegral)
 
 plot_path(time_ax, paths, title="Truncated Tempered Stable Sample Paths")
-plt.savefig("../pngs/TSPathSimulation.png", bbox_inches="tight")
+plt.savefig(project_config.ROOT_DIR + "/pngs/TSPathSimulation.eps",format="eps", bbox_inches="tight")
 plt.show()
